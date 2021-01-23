@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct NewsDetail: View {
-    var newsOne:NewsOne
+    var article:Article
     var body: some View {
         ScrollView {
             VStack {
-                Text(newsOne.title)
+                Text(article.title)
                     .font(.title)
                 Divider()
-                Text(newsOne.description)
+                Text(article.articleDescription)
             }
             
         }
-        .navigationTitle(newsOne.title)
+        .navigationTitle(article.title)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct NewsDetail_Previews: PreviewProvider {
     static var previews: some View {
-        NewsDetail(newsOne: news[0])
+        NewsDetail(article: NewsService.shared.json.articles[0])
     }
 }
