@@ -6,16 +6,19 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct NewsRow: View {
-//    var newsOne : NewsOne
     var article: Article
     
     var body: some View {
         HStack {
-            Image("leo")
-                .resizable()
-                .frame(width: 100, height: 100)
+            URLImage(url: URL(string:  article.urlToImage)!){image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode:.fit)
+//                    .frame(width: 100, height: 100)
+            }
            
             VStack(alignment:.leading){
                 Text(article.title)

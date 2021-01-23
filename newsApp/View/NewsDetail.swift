@@ -15,7 +15,7 @@ struct NewsDetail: View {
                 Text(article.title)
                     .font(.title)
                 Divider()
-                Text(article.articleDescription)
+                Text(article.content!)
             }
             
         }

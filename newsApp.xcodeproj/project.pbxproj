@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		79CDC07A25BCA85300DE30D3 /* NewsResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 79CDC07925BCA85300DE30D3 /* NewsResponse.json */; };
 		79CDC08D25BCBB0C00DE30D3 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC08C25BCBB0C00DE30D3 /* NewsService.swift */; };
 		79CDC09125BCC95A00DE30D3 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC09025BCC95A00DE30D3 /* API.swift */; };
+		79CDC09A25BCDDC100DE30D3 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 79CDC09925BCDDC100DE30D3 /* URLImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79CDC09A25BCDDC100DE30D3 /* URLImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +129,9 @@
 			dependencies = (
 			);
 			name = newsApp;
+			packageProductDependencies = (
+				79CDC09925BCDDC100DE30D3 /* URLImage */,
+			);
 			productName = newsApp;
 			productReference = 79CDC04925BC4A5300DE30D3 /* newsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -154,6 +159,9 @@
 				Base,
 			);
 			mainGroup = 79CDC04025BC4A5200DE30D3;
+			packageReferences = (
+				79CDC09825BCDDC100DE30D3 /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = 79CDC04A25BC4A5300DE30D3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -374,6 +382,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		79CDC09825BCDDC100DE30D3 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		79CDC09925BCDDC100DE30D3 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79CDC09825BCDDC100DE30D3 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 79CDC04125BC4A5200DE30D3 /* Project object */;
 }
