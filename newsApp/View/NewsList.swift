@@ -16,7 +16,7 @@ struct NewsList: View {
                     NewsRow(article: article)
                 }
             }
-            .navigationTitle("News")
+            .navigationTitle("News headlines")
         }
     }
 }

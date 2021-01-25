@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NewsList(articles: NewsService.shared.json.articles)
+        ZStack{
+            NewsList(articles: NewsService.shared.json.articles)
+           
+        }
     }
 }
 

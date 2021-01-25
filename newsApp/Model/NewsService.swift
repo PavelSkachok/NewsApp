@@ -16,4 +16,6 @@ final class NewsService: ObservableObject {
         let data = try! Data(contentsOf: url!)
         return try! decoder.decode(API.self, from: data)
     }
+    
+    
 }
