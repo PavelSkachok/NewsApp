@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var news = NewsViewModel()
     var body: some View {
-        ZStack{
-            NewsList(articles: NewsService.shared.json.articles)
-           
+        if let a = news.newsApi {
+            ZStack{
+                NewsList(articles: a.articles)
+            }
+        }else {
+            Text("null")
         }
     }
 }
