@@ -9,16 +9,18 @@ import Foundation
 import Combine
 
 class NewsViewModel: ObservableObject {
-    @Published var newsApi :API?
+    var service = NewsService()
+    @Published var newsApi :API? = NewsService.shared.json
     @Published var indexEndpoint: Int = 0
     @Published var stringEndpoint: String = "general"
+    @Published var countryEndpoint: String = "cz"
     var cancellable: AnyCancellable?
-    var service = NewsService()
+   
     
     init() {
-        cancellable = Publishers.CombineLatest($indexEndpoint,$stringEndpoint)
-            .flatMap{ (index, string) -> AnyPublisher<API, Error> in
-                return self.service.fetchArticles(endpoint: Endpoints.init(index: index),stringEndpoints: string)
+        cancellable = Publishers.CombineLatest3($indexEndpoint, $stringEndpoint, $countryEndpoint)
+            .flatMap{ (index, string, country) -> AnyPublisher<API, Error> in
+                return self.service.fetchArticles(endpoint: Endpoints.init(index: index),stringEndpoints: string, countryEndpoint: country)
             }
         .sink(receiveCompletion: {
             _ in

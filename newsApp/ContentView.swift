@@ -28,7 +28,7 @@ struct ContentView: View {
     @ObservedObject var news = NewsViewModel()
 //    @ObservedObject var test = Test()
     var body: some View {
-        if let a = news.newsApi {
+        if  let a = news.newsApi{
             
             VStack {
                 Picker("",selection: $news.indexEndpoint) {
@@ -49,6 +49,18 @@ struct ContentView: View {
                         Text("technology").tag("technology")
                     }.pickerStyle(SegmentedPickerStyle())
                 }
+                Text("Country")
+                Picker("",selection: $news.countryEndpoint) {
+                    Text("cz").tag("cz")
+                    Text("de").tag("de")
+                    Text("pl").tag("pl")
+                    Text("ru").tag("ru")
+                    Text("ua").tag("ua")
+                    Text("us").tag("us")
+                    Text("fr").tag("fr")
+                    Text("gb").tag("gb")
+                    
+                }.pickerStyle(SegmentedPickerStyle())
                 NewsList(articles: a.articles)
             }
         }

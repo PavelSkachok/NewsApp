@@ -30,8 +30,8 @@
             filePath = "newsApp/Model/NewsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "NewsViewModel"
             landmarkType = "3">
          </BreakpointContent>
@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
             endingLineNumber = "42"
-            landmarkName = "fetchArticles(endpoint:stringEndpoints:)"
+            landmarkName = "fetchArticles(endpoint:stringEndpoints:countryEndpoint:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -64,7 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "fetchArticles(endpoint:stringEndpoints:)"
+            landmarkName = "fetchArticles(endpoint:stringEndpoints:countryEndpoint:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -203,7 +203,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
-            landmarkName = "fetchArticles(endpoint:stringEndpoints:)"
+            landmarkName = "fetchArticles(endpoint:stringEndpoints:countryEndpoint:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -217,8 +217,8 @@
             filePath = "newsApp/Model/NewsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "NewsViewModel"
             landmarkType = "3">
          </BreakpointContent>
