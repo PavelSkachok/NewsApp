@@ -31,6 +31,7 @@ struct ContentView: View {
         if  let a = news.newsApi{
             
             VStack {
+                LocalView()
                 Picker("",selection: $news.indexEndpoint) {
                     Text("topHeadlines").tag(0)
                     Text("Category").tag(1)

@@ -26,7 +26,7 @@ class NewsService {
         components.queryItems = [
             "country": countryEndpoint,
             "category": endpoint.path() == "" ? nil: stringEndpoints,
-            "apiKey": "751b73924a1a42b88d7ba11f1b04ed3b",
+            "apiKey": "b2a849c07c30432eb9e293ee88c2117c",
         ]
         .compactMap {
             URLQueryItem(name: $0.key, value: $0.value)
@@ -34,13 +34,15 @@ class NewsService {
         }
         let url = components.url(relativeTo: URL(string: "https://newsapi.org")!)
         let request = URLRequest(url: url!)
+        print(request)
         return URLSession
             .shared
             .dataTaskPublisher(for: request)
-//            .debounce(for: 1000, scheduler: DispatchQueue.main)
+
             .tryMap {
                 try  JSONDecoder().decode(API.self, from: $0.data)
         }
+//            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

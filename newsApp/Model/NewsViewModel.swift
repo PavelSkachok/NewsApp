@@ -8,12 +8,12 @@
 import Foundation
 import Combine
 
-class NewsViewModel: ObservableObject {
+class NewsViewModel: ObservableObject{
     var service = NewsService()
-    @Published var newsApi :API? = NewsService.shared.json
-    @Published var indexEndpoint: Int = 0
+    @Published var newsApi :API?
+    @Published var indexEndpoint: Int = 1
     @Published var stringEndpoint: String = "general"
-    @Published var countryEndpoint: String = "cz"
+    @Published var countryEndpoint: String = "bg"
     var cancellable: AnyCancellable?
    
     
