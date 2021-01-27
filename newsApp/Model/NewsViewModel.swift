@@ -10,14 +10,15 @@ import Combine
 
 class NewsViewModel: ObservableObject {
     @Published var newsApi :API?
-    @Published var indexEndpoint: Int = 4
+    @Published var indexEndpoint: Int = 0
+    @Published var stringEndpoint: String = "general"
     var cancellable: AnyCancellable?
     var service = NewsService()
     
     init() {
-       cancellable = $indexEndpoint
-            .flatMap{ value -> AnyPublisher<API, Error> in
-                return self.service.fetchArticles(endpoint: Endpoints.init(index: value))
+        cancellable = Publishers.CombineLatest($indexEndpoint,$stringEndpoint)
+            .flatMap{ (index, string) -> AnyPublisher<API, Error> in
+                return self.service.fetchArticles(endpoint: Endpoints.init(index: index),stringEndpoints: string)
             }
         .sink(receiveCompletion: {
             _ in

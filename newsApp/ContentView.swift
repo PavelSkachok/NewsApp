@@ -31,18 +31,24 @@ struct ContentView: View {
         if let a = news.newsApi {
             
             VStack {
-                Picker("", selection: $news.indexEndpoint) {
-                    Text("business").tag(0)
-                    Text("entertainment").tag(1)
-                    Text("general").tag(2)
+                Picker("",selection: $news.indexEndpoint) {
+                    Text("topHeadlines").tag(0)
+                    Text("Category").tag(1)
                 }.pickerStyle(SegmentedPickerStyle())
-                Picker("", selection: $news.indexEndpoint) {
-                    Text("health").tag(3)
-                    Text("science").tag(4)
-                    Text("sports").tag(5)
-                    Text("technology").tag(6)
-                }.pickerStyle(SegmentedPickerStyle())
-                Text(Endpoints(index: news.indexEndpoint).path())
+                
+                if news.indexEndpoint == 1 {
+                    Picker("", selection: $news.stringEndpoint) {
+                        Text("business").tag("business")
+                        Text("entertainment").tag("entertainment")
+                        Text("general").tag("general")
+                    }.pickerStyle(SegmentedPickerStyle())
+                    Picker("", selection: $news.stringEndpoint) {
+                        Text("health").tag("health")
+                        Text("science").tag("science")
+                        Text("sports").tag("sports")
+                        Text("technology").tag("technology")
+                    }.pickerStyle(SegmentedPickerStyle())
+                }
                 NewsList(articles: a.articles)
             }
         }

@@ -30,10 +30,10 @@
             filePath = "newsApp/Model/NewsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "fetchNewsApi(endpoint:)"
-            landmarkType = "7">
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "NewsViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
             endingLineNumber = "42"
-            landmarkName = "fetchArticles(endpoint:)"
+            landmarkName = "fetchArticles(endpoint:stringEndpoints:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -64,7 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "fetchArticles(endpoint:)"
+            landmarkName = "fetchArticles(endpoint:stringEndpoints:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -203,7 +203,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
-            landmarkName = "fetchArticles(endpoint:)"
+            landmarkName = "fetchArticles(endpoint:stringEndpoints:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -217,10 +217,10 @@
             filePath = "newsApp/Model/NewsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "fetchNewsApi(endpoint:)"
-            landmarkType = "7">
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "NewsViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

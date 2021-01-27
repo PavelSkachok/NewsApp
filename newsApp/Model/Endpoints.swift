@@ -7,52 +7,28 @@
 
 import Foundation
 enum Endpoints{
-    case business
-    case entertainment
-    case general
-    case health
-    case science
-    case sports
-    case technology
+    case topHeadlines
+    case category
     
     init(index: Int){
         switch index {
         case 0:
-            self = .business
+            self = .topHeadlines
         case 1:
-            self = .entertainment
-        case 2:
-            self = .general
-        case 3:
-            self = .health
-        case 4:
-            self = .science
-        case 5:
-            self = .sports
-        case 6:
-            self = .technology
-        default:
-            self = .general
+            self = .category
+       
             
+        default:
+            self = .topHeadlines
         }
     }
     
     func path() -> String{
         switch self {
-        case .business:
-            return "business"
-        case .entertainment:
-            return "entertainment"
-        case .general:
+        case .topHeadlines:
+            return ""
+        case .category:
             return "general"
-        case .health:
-            return "health"
-        case .science:
-            return "science"
-        case .sports:
-            return "sports"
-        case .technology:
-            return "technology"
         }
     }
 }

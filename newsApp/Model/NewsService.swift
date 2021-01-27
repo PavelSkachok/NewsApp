@@ -20,12 +20,12 @@ class NewsService {
         return try! decoder.decode(API.self, from: data)
     }
     
-    func fetchArticles(endpoint: Endpoints)-> AnyPublisher<API,Error> {
+    func fetchArticles(endpoint: Endpoints, stringEndpoints: String)-> AnyPublisher<API,Error> {
         var components = URLComponents()
         components.path = "/v2/top-headlines"
         components.queryItems = [
-            "country": "ua",
-            "category": endpoint.path(),
+            "country": "cz",
+            "category": endpoint.path() == "" ? nil: stringEndpoints,
             "apiKey": "751b73924a1a42b88d7ba11f1b04ed3b",
         ]
         .compactMap {
