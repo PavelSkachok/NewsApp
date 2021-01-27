@@ -40,6 +40,6 @@ extension LocationViewModel: CLLocationManagerDelegate {
         userLongitude = location.coordinate.longitude
         geoCode(with: location)
         currentCountry = placemark?.isoCountryCode
-        print(location)
+//        print(location)
     }
 }

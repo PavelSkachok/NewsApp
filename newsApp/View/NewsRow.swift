@@ -13,26 +13,28 @@ struct NewsRow: View {
     
     var body: some View {
         HStack {
-            URLImage(url: URL(string:  article.urlToImage)!){ image in
+            if let stringUrlImage = article.urlToImage {
+            URLImage(url: URL(string:  stringUrlImage)!){ image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .clipped()
                     .cornerRadius(10)
                     .frame(width: 100, height: 100)
-
             }
+            
+        }
                 
             VStack(alignment:.leading){
-                Text(article.title)
+                Text(article.title!)
                     .font(.title)
                     .lineLimit(2)
 //                    .multilineTextAlignment(.leading)
-                Text(article.articleDescription)
+                Text(article.articleDescription ?? "")
                     .font(.subheadline)
 //                    .multilineTextAlignment(.center)
                 Spacer()
-                Text(article.publishedAt)
+                Text(article.publishedAt ?? "")
                 
             }
             Spacer()

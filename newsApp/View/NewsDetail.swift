@@ -13,7 +13,7 @@ import WebKit
 struct NewsDetail: View {
     var article:Article
     var body: some View {
-                WebView(request: URLRequest(url: URL(string: article.url)!))
+        WebView(request: URLRequest(url: URL(string: article.url!)!))
                     .navigationBarTitle("News Details", displayMode: .inline)
     }
 }

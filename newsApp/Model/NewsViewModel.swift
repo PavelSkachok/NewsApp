@@ -10,10 +10,11 @@ import Combine
 
 class NewsViewModel: ObservableObject{
     var service = NewsService()
+//    var locationViewModel = LocationViewModel()
     @Published var newsApi :API?
     @Published var indexEndpoint: Int = 1
     @Published var stringEndpoint: String = "general"
-    @Published var countryEndpoint: String = "bg"
+    @Published var countryEndpoint: String = LocationViewModel().currentCountry ?? "ru"
     var cancellable: AnyCancellable?
    
     
@@ -23,9 +24,11 @@ class NewsViewModel: ObservableObject{
                 return self.service.fetchArticles(endpoint: Endpoints.init(index: index),stringEndpoints: string, countryEndpoint: country)
             }
         .sink(receiveCompletion: {
-            _ in
+            error in
+            return print(error)
         }, receiveValue: { api in
             self.newsApi = api
+            print("Проверка названия статьи: "+api.articles[0].title!)
         })
     }
     

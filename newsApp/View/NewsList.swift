@@ -11,7 +11,7 @@ struct NewsList: View {
     var articles: [Article]
     var body: some View {
             NavigationView {
-                List(articles) {
+                List(articles, id: \.url) {
                         article in
                         NavigationLink(destination: NewsDetail(article: article)) {
                             NewsRow(article: article)

@@ -38,11 +38,12 @@ class NewsService {
         return URLSession
             .shared
             .dataTaskPublisher(for: request)
-
             .tryMap {
-                try  JSONDecoder().decode(API.self, from: $0.data)
-        }
-//            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+                print("момент перед декодированием")
+                print($0.data)
+                return try JSONDecoder().decode(API.self, from: $0.data)
+
+            }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
