@@ -22,7 +22,6 @@ struct NewsRow: View {
                     .frame(width: 100, height: 100)
 
             }
-            Image("")
                 
             VStack(alignment:.leading){
                 Text(article.title)

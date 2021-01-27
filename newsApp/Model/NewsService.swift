@@ -20,12 +20,12 @@ class NewsService {
         return try! decoder.decode(API.self, from: data)
     }
     
-    func fetchArticles()-> AnyPublisher<API,Error> {
-        print("Publisher input")
+    func fetchArticles(endpoint: Endpoints)-> AnyPublisher<API,Error> {
         var components = URLComponents()
         components.path = "/v2/top-headlines"
         components.queryItems = [
-            "country": "ru",
+            "country": "ua",
+            "category": endpoint.path(),
             "apiKey": "751b73924a1a42b88d7ba11f1b04ed3b",
         ]
         .compactMap {
@@ -37,10 +37,11 @@ class NewsService {
         return URLSession
             .shared
             .dataTaskPublisher(for: request)
+//            .debounce(for: 1000, scheduler: DispatchQueue.main)
             .tryMap {
                 try  JSONDecoder().decode(API.self, from: $0.data)
         }
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 

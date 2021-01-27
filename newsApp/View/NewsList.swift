@@ -10,14 +10,15 @@ import SwiftUI
 struct NewsList: View {
     var articles: [Article]
     var body: some View {
-        NavigationView {
-            List(articles){article in
-                NavigationLink(destination: NewsDetail(article: article)) {
-                    NewsRow(article: article)
-                }
+            NavigationView {
+                List(articles) {
+                        article in
+                        NavigationLink(destination: NewsDetail(article: article)) {
+                            NewsRow(article: article)
+                        }
+                    }
+                .navigationTitle("News headlines")
             }
-            .navigationTitle("News headlines")
-        }
     }
 }
 
