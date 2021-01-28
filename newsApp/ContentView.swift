@@ -26,7 +26,7 @@ class Test: ObservableObject {
 
 struct ContentView: View {
    
-    @ObservedObject var local = LocationViewModel()
+//    @ObservedObject var local = LocationViewModel()
     @ObservedObject var news = NewsViewModel()
     
     var body: some View {
@@ -37,10 +37,12 @@ struct ContentView: View {
                 Text(news.countryEndpoint)
                Picker("",selection: $news.indexEndpoint) {
                     Text("topHeadlines").tag(0)
-                    Text("Category").tag(1)
+                    Text("everything").tag(1)
                 }.pickerStyle(SegmentedPickerStyle())
-                
-                if news.indexEndpoint == 1 {
+                TextField("Search", text: $news.keyword)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+    
+                Text("Category")
                     Picker("", selection: $news.stringEndpoint) {
                         Text("business").tag("business")
                         Text("entertainment").tag("entertainment")
@@ -52,7 +54,6 @@ struct ContentView: View {
                         Text("sports").tag("sports")
                         Text("technology").tag("technology")
                     }.pickerStyle(SegmentedPickerStyle())
-                }
                 Text("Country")
                 Picker("",selection: $news.countryEndpoint) {
                     Text("cz").tag("cz")
@@ -64,7 +65,7 @@ struct ContentView: View {
                     Text("fr").tag("fr")
                     Text("gb").tag("gb")
                 }.pickerStyle(SegmentedPickerStyle())
-                NewsList(articles: a.articles)
+                NewsList(articles: a)
             }
         }
         else {

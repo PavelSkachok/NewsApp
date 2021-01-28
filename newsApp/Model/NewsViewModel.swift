@@ -16,10 +16,12 @@ class NewsViewModel:NSObject, ObservableObject {
     @Published var currentCountry: String?
     private var placemark: CLPlacemark?
     var service = NewsService()
-    @Published var newsApi :API?
-    @Published var indexEndpoint: Int = 1
+    @Published var newsApi :[Article]?
+    @Published var indexEndpoint: Int = 0
     @Published var stringEndpoint: String = "general"
     @Published var countryEndpoint: String = "ru"
+    @Published var keyword:String = ""
+//    @Published var everything: String = "/v2/top-headlines"
     var cancellable: AnyCancellable?
    
     private let locationManager = CLLocationManager()
@@ -31,13 +33,19 @@ class NewsViewModel:NSObject, ObservableObject {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
         
-        cancellable = Publishers.CombineLatest3($indexEndpoint, $stringEndpoint, $countryEndpoint)
-            .flatMap{ (index, string, country) -> AnyPublisher<API, Error> in
-                return self.service.fetchArticles(endpoint: Endpoints.init(index: index),stringEndpoints: string, countryEndpoint: country)
+        cancellable = Publishers.CombineLatest4($indexEndpoint, $stringEndpoint, $countryEndpoint,
+                                                $keyword
+                                                    .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+                                                    .eraseToAnyPublisher()
+        )
+            .flatMap{ (index, string, country, keyword) -> AnyPublisher<[Article], Error> in
+                return self.service.fetchArticles(endpoint: Endpoints.init(index: index),stringEndpoints: string, countryEndpoint: country, keyword: keyword)
             }
         .sink(receiveCompletion: {
             error in
+            self.newsApi = []
             return print(error)
+            
         }, receiveValue: { api in
             self.newsApi = api
 //            print("Проверка названия статьи: "+api.articles[0].title!)

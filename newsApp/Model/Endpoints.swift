@@ -8,14 +8,14 @@
 import Foundation
 enum Endpoints{
     case topHeadlines
-    case category
+    case everything
     
     init(index: Int){
         switch index {
         case 0:
             self = .topHeadlines
         case 1:
-            self = .category
+            self = .everything
        
             
         default:
@@ -26,9 +26,9 @@ enum Endpoints{
     func path() -> String{
         switch self {
         case .topHeadlines:
-            return ""
-        case .category:
-            return "general"
+            return "/v2/top-headlines"
+        case .everything:
+            return "/v2/everything"
         }
     }
 }

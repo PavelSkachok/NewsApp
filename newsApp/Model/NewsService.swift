@@ -20,15 +20,16 @@ class NewsService {
         return try! decoder.decode(API.self, from: data)
     }
     
-    func fetchArticles(endpoint: Endpoints, stringEndpoints: String, countryEndpoint: String)-> AnyPublisher<API,Error> {
+    func fetchArticles(endpoint: Endpoints, stringEndpoints: String, countryEndpoint: String, keyword:String)-> AnyPublisher<[Article],Error> {
         var components = URLComponents()
-        components.path = "/v2/top-headlines"
+        components.path = endpoint.path()
         components.queryItems = [
-            "country": countryEndpoint,
-            "category": endpoint.path() == "" ? nil: stringEndpoints,
-            "apiKey": "b2a849c07c30432eb9e293ee88c2117c",
+            "q": keyword,
+            "country": endpoint == .topHeadlines ? countryEndpoint: nil,
+            "category":endpoint == .topHeadlines ? stringEndpoints: nil,
+//            "apiKey": "b2a849c07c30432eb9e293ee88c2117c",
 //            "apiKey": "751b73924a1a42b88d7ba11f1b04ed3b",
-//            "apiKey": "7cfca023b0f7404bb6474a2797e7dfc0",
+            "apiKey": "7cfca023b0f7404bb6474a2797e7dfc0",
         ]
         .compactMap {
             URLQueryItem(name: $0.key, value: $0.value)
@@ -43,9 +44,15 @@ class NewsService {
             .tryMap {
                 print("момент перед декодированием")
                 print($0.data)
-                return try JSONDecoder().decode(API.self, from: $0.data)
+                do{
+                    return try JSONDecoder().decode(API.self, from: $0.data).articles
+                }catch{
+                    return []
+                }
+                
 
             }
+//            .debounce(for: 1, scheduler: DispatchQueue.main)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
