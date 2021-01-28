@@ -27,6 +27,8 @@ class NewsService {
             "country": countryEndpoint,
             "category": endpoint.path() == "" ? nil: stringEndpoints,
             "apiKey": "b2a849c07c30432eb9e293ee88c2117c",
+//            "apiKey": "751b73924a1a42b88d7ba11f1b04ed3b",
+//            "apiKey": "7cfca023b0f7404bb6474a2797e7dfc0",
         ]
         .compactMap {
             URLQueryItem(name: $0.key, value: $0.value)

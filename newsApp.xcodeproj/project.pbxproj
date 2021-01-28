@@ -21,7 +21,6 @@
 		79CDC0AB25C0615D00DE30D3 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC0AA25C0615D00DE30D3 /* NewsViewModel.swift */; };
 		79CDC0AE25C0C1A200DE30D3 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC0AD25C0C1A000DE30D3 /* Endpoints.swift */; };
 		79CDC0B125C1A55700DE30D3 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC0B025C1A55600DE30D3 /* LocationViewModel.swift */; };
-		79CDC0B425C1B3CE00DE30D3 /* LocalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC0B325C1B3CE00DE30D3 /* LocalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +39,6 @@
 		79CDC0AA25C0615D00DE30D3 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		79CDC0AD25C0C1A000DE30D3 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		79CDC0B025C1A55600DE30D3 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
-		79CDC0B325C1B3CE00DE30D3 /* LocalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +98,6 @@
 				79CDC06325BC563200DE30D3 /* NewsRow.swift */,
 				79CDC06825BC5A6400DE30D3 /* NewsList.swift */,
 				79CDC07525BC872C00DE30D3 /* NewsDetail.swift */,
-				79CDC0B325C1B3CE00DE30D3 /* LocalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,7 +205,6 @@
 				79CDC06925BC5A6400DE30D3 /* NewsList.swift in Sources */,
 				79CDC04D25BC4A5300DE30D3 /* newsAppApp.swift in Sources */,
 				79CDC09125BCC95A00DE30D3 /* API.swift in Sources */,
-				79CDC0B425C1B3CE00DE30D3 /* LocalView.swift in Sources */,
 				79CDC07625BC872C00DE30D3 /* NewsDetail.swift in Sources */,
 				79CDC0AE25C0C1A200DE30D3 /* Endpoints.swift in Sources */,
 				79CDC0AB25C0615D00DE30D3 /* NewsViewModel.swift in Sources */,

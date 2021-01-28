@@ -25,14 +25,17 @@ class Test: ObservableObject {
 
 
 struct ContentView: View {
+   
+    @ObservedObject var local = LocationViewModel()
     @ObservedObject var news = NewsViewModel()
-//    @ObservedObject var test = Test()
+    
     var body: some View {
-        if  let a = news.newsApi{
-            
+        
+        if  let a = news.newsApi {
             VStack {
-                LocalView()
-                Picker("",selection: $news.indexEndpoint) {
+//                Text(LocationViewModel.currentCountry ?? "Pasha")
+                Text(news.countryEndpoint)
+               Picker("",selection: $news.indexEndpoint) {
                     Text("topHeadlines").tag(0)
                     Text("Category").tag(1)
                 }.pickerStyle(SegmentedPickerStyle())
@@ -60,7 +63,6 @@ struct ContentView: View {
                     Text("us").tag("us")
                     Text("fr").tag("fr")
                     Text("gb").tag("gb")
-                    
                 }.pickerStyle(SegmentedPickerStyle())
                 NewsList(articles: a.articles)
             }

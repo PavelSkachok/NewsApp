@@ -14,7 +14,7 @@ struct NewsRow: View {
     var body: some View {
         HStack {
             if let stringUrlImage = article.urlToImage {
-            URLImage(url: URL(string:  stringUrlImage)!){ image in
+                URLImage(url: URL(string:stringUrlImage)!){ image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)

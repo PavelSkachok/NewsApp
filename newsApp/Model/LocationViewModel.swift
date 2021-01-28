@@ -12,7 +12,7 @@ import CoreLocation
 class LocationViewModel: NSObject, ObservableObject{
     @Published var userLatitude: Double = 0
     @Published var userLongitude: Double = 0
-    @Published var currentCountry: String?
+    @Published  var currentCountry: String?
     private var placemark: CLPlacemark?
     
     private let locationManager = CLLocationManager()
@@ -40,6 +40,5 @@ extension LocationViewModel: CLLocationManagerDelegate {
         userLongitude = location.coordinate.longitude
         geoCode(with: location)
         currentCountry = placemark?.isoCountryCode
-//        print(location)
     }
 }
