@@ -16,7 +16,7 @@ class NewsViewModel:NSObject, ObservableObject {
     @Published var currentCountry: String?
     private var placemark: CLPlacemark?
     var service = NewsService()
-    @Published var newsApi :[Article]?
+    @Published var newsArticles :[Article]?
     @Published var indexEndpoint: Int = 0
     @Published var stringEndpoint: String = "general"
     @Published var countryEndpoint: String = "ru"
@@ -43,11 +43,11 @@ class NewsViewModel:NSObject, ObservableObject {
             }
         .sink(receiveCompletion: {
             error in
-            self.newsApi = []
+            self.newsArticles = []
             return print(error)
             
         }, receiveValue: { api in
-            self.newsApi = api
+            self.newsArticles = api
 //            print("Проверка названия статьи: "+api.articles[0].title!)
         })
     }
@@ -64,7 +64,7 @@ class NewsViewModel:NSObject, ObservableObject {
 //            .sink(receiveCompletion: {
 //               _ in
 //            }, receiveValue: {api in
-//                self.newsApi = api
+//                self.newsArticles = api
 //            })
 //    }
 }
