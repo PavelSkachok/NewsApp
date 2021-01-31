@@ -11,10 +11,23 @@ import WebKit
 
 
 struct NewsDetail: View {
-    var article:Article
+
+    @EnvironmentObject var newsViewModel: NewsViewModel
+//    var indexArticle: Int {
+//
+//    }
+    var article: Article
+//    var article:Article {
+//        newsViewModel.newsArticles[indexArticle]
+//    }
     var body: some View {
         WebView(request: URLRequest(url: URL(string: article.url!)!))
-                    .navigationBarTitle("News Details", displayMode: .inline)
+            .navigationBarTitle("Favorite", displayMode: .inline)
+            .navigationBarItems(trailing:
+                                    FavoriteButton(isSet: $newsViewModel.newsArticles[newsViewModel.indexIdNews.firstIndex(of: article.id) ?? 0].isFavorite)
+            
+            )
+           
     }
 }
 

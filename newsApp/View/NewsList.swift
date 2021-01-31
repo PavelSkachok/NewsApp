@@ -29,7 +29,7 @@ struct NewsList: View {
                     ForEach(filteredArticles) {
                             article in
                         HStack {
-                            NavigationLink(destination: NewsDetail(article: article)) {
+                            NavigationLink(destination: NewsDetail(article: article) ){
                                 NewsRow(indexNews: newsViewModel.indexIdNews.firstIndex(of: article.id)!)
                                 FavoriteButton(isSet: $newsViewModel.newsArticles[newsViewModel.indexIdNews.firstIndex(of: article.id)!].isFavorite)
                             }
