@@ -52,9 +52,7 @@ class NewsService {
                 }catch{
                     return []
                 }
-                
-
-            }
+                }
 //            .debounce(for: 1, scheduler: DispatchQueue.main)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()

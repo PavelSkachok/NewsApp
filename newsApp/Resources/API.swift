@@ -22,6 +22,7 @@ struct Article: Codable ,Identifiable{
     let urlToImage: String?
     let publishedAt: String?
     let content: String?
+    var isFavorite: Bool = false
 
 
     enum CodingKeys: String, CodingKey {

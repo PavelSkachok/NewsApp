@@ -16,13 +16,20 @@ class NewsViewModel:NSObject, ObservableObject {
     @Published var currentCountry: String?
     private var placemark: CLPlacemark?
     var service = NewsService()
-    @Published var newsArticles :[Article]?
+    @Published var newsArticles :[Article] = []
+    
+    
     @Published var indexEndpoint: Int = 0
     @Published var stringEndpoint: String = "general"
     @Published var countryEndpoint: String = "ru"
     @Published var keyword:String = ""
-//    @Published var everything: String = "/v2/top-headlines"
     var cancellable: AnyCancellable?
+    
+    var indexIdNews: [UUID]{
+        newsArticles.map{
+            $0.id
+        }
+    }
    
     private let locationManager = CLLocationManager()
     private let geoCoder = CLGeocoder()
@@ -57,16 +64,6 @@ class NewsViewModel:NSObject, ObservableObject {
             self.placemark = placemark?.last
         }
     }
-    
-//    func fetchNewsApi(endpoint: Endpoints){
-//        print("Subscribe input")
-//        cancellable = service.fetchArticles(endpoint: endpoint)
-//            .sink(receiveCompletion: {
-//               _ in
-//            }, receiveValue: {api in
-//                self.newsArticles = api
-//            })
-//    }
 }
 
 extension NewsViewModel: CLLocationManagerDelegate {

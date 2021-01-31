@@ -31,7 +31,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        if  let articles = news.newsArticles {
+//        if  let articles = news.newsArticles {
             VStack {
 //                Text(LocationViewModel.currentCountry ?? "Pasha")
                 Text(news.countryEndpoint)
@@ -65,11 +65,8 @@ struct ContentView: View {
                     Text("fr").tag("fr")
                     Text("gb").tag("gb")
                 }.pickerStyle(SegmentedPickerStyle())
-                NewsList(articles: articles)
-            }
-        }
-        else {
-            Text("null")
+                NewsList()
+                    .environmentObject(news)
         }
     }
 }
