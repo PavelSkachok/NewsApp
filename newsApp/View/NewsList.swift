@@ -10,8 +10,9 @@ import SwiftUI
 struct NewsList: View {
     
     @EnvironmentObject var newsViewModel : NewsViewModel
-//    var articles: [Article]
     @State var showFavoriteOnly = false
+
+    
     
     var filteredArticles:[Article] {
         (newsViewModel.newsArticles.filter{
@@ -30,8 +31,10 @@ struct NewsList: View {
                             article in
                         HStack {
                             NavigationLink(destination: NewsDetail(article: article) ){
-                                NewsRow(indexNews: newsViewModel.indexIdNews.firstIndex(of: article.id)!)
-                                FavoriteButton(isSet: $newsViewModel.newsArticles[newsViewModel.indexIdNews.firstIndex(of: article.id)!].isFavorite)
+                                NewsRow(article: article)
+                                FavoriteButton(isSet: $newsViewModel.newsArticles[newsViewModel.newsArticles.firstIndex(where: {
+                                    $0.url == article.url
+                                })!].isFavorite)
                             }
                         }
                     }

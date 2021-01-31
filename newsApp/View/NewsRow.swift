@@ -9,22 +9,12 @@ import SwiftUI
 import URLImage
 
 struct NewsRow: View {
-    
-//    @ObservedObject var newsViewModel = NewsViewModel()
     @EnvironmentObject var newsViewModel: NewsViewModel
-    var indexNews: Int
-    var article: Article {
-        if !newsViewModel.newsArticles.isEmpty {
-            print("Индекс: \(indexNews)")
-       return     newsViewModel.newsArticles[indexNews]
-            }
-        return Article(source: Source(id: "", name: ""), author: "", title: "", articleDescription: "", url: "", urlToImage: "", publishedAt: "", content: "")
-    }
+    var article:Article?
    
-    
     var body: some View {
         HStack {
-            if let stringUrlImage =  article.urlToImage, let url = URL(string:stringUrlImage) {
+            if let stringUrlImage =  article!.urlToImage, let url = URL(string:stringUrlImage) {
                 URLImage(url: url){ image in
                 image
                     .resizable()
@@ -37,15 +27,13 @@ struct NewsRow: View {
         }
                 
             VStack(alignment:.leading){
-                Text(article.title ?? "")
+                Text(article!.title ?? "")
                     .font(.title)
                     .lineLimit(2)
-//                    .multilineTextAlignment(.leading)
-                Text(article.articleDescription ?? "")
+                Text(article!.articleDescription ?? "")
                     .font(.subheadline)
-//                    .multilineTextAlignment(.center)
                 Spacer()
-                Text(article.publishedAt ?? "")
+                Text(article!.publishedAt ?? "")
                 
             }
             Spacer()
@@ -56,6 +44,6 @@ struct NewsRow: View {
 
 struct NewsRow_Previews: PreviewProvider {
     static var previews: some View {
-        NewsRow(indexNews: 0)
+        NewsRow(article: NewsService.shared.json.articles[0])
     }
 }

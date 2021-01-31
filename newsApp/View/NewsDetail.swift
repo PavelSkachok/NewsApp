@@ -13,21 +13,24 @@ import WebKit
 struct NewsDetail: View {
 
     @EnvironmentObject var newsViewModel: NewsViewModel
-//    var indexArticle: Int {
-//
-//    }
-    var article: Article
-//    var article:Article {
-//        newsViewModel.newsArticles[indexArticle]
-//    }
+    @State var isSet:Bool = false
+    var article: Article?
+    
+    var isNotArticleEmpty: Bool {
+        !newsViewModel.newsArticles.isEmpty
+    }
+    
+    
     var body: some View {
-        WebView(request: URLRequest(url: URL(string: article.url!)!))
-            .navigationBarTitle("Favorite", displayMode: .inline)
-            .navigationBarItems(trailing:
-                                    FavoriteButton(isSet: $newsViewModel.newsArticles[newsViewModel.indexIdNews.firstIndex(of: article.id) ?? 0].isFavorite)
-            
-            )
-           
+        if let articleDetail = article {
+            WebView(request: URLRequest(url: URL(string: articleDetail.url!)!))
+                .navigationBarTitle("Favorite", displayMode: .inline)
+                .navigationBarItems(trailing:
+                                        FavoriteButton(isSet: isNotArticleEmpty ? ($newsViewModel.newsArticles[newsViewModel.newsArticles.firstIndex(where: {
+                                            $0.url == articleDetail.url
+                                        }) ?? 0].isFavorite): .constant(false))
+                )
+        }
     }
 }
 

@@ -26,14 +26,11 @@ class Test: ObservableObject {
 
 struct ContentView: View {
    
-//    @ObservedObject var local = LocationViewModel()
     @ObservedObject var news = NewsViewModel()
     
     var body: some View {
         
-//        if  let articles = news.newsArticles {
             VStack {
-//                Text(LocationViewModel.currentCountry ?? "Pasha")
                 Text(news.countryEndpoint)
                Picker("",selection: $news.indexEndpoint) {
                     Text("topHeadlines").tag(0)

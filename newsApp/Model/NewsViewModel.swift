@@ -30,6 +30,11 @@ class NewsViewModel:NSObject, ObservableObject {
             $0.id
         }
     }
+    var stringIdNews: [String]{
+        newsArticles.map{
+            $0.url!
+        }
+    }
    
     private let locationManager = CLLocationManager()
     private let geoCoder = CLGeocoder()
