@@ -17,6 +17,7 @@ class NewsViewModel:NSObject, ObservableObject {
     private var placemark: CLPlacemark?
     var service = NewsService()
     @Published var newsArticles :[Article] = []
+    @Published var sourcesNews: [Source] = []
     
     
     @Published var indexEndpoint: Int = 0
@@ -24,6 +25,7 @@ class NewsViewModel:NSObject, ObservableObject {
     @Published var countryEndpoint: String = "ru"
     @Published var keyword:String = ""
     var cancellable: AnyCancellable?
+    var cancellableSource:AnyCancellable?
     
     var indexIdNews: [UUID]{
         newsArticles.map{
@@ -62,6 +64,18 @@ class NewsViewModel:NSObject, ObservableObject {
             self.newsArticles = api
 //            print("Проверка названия статьи: "+api.articles[0].title!)
         })
+        
+        cancellableSource = self.service.fetchSources()
+//            .debounce(for: .seconds(3), scheduler: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                error in
+                self.sourcesNews = []
+                print("ошибка декодирования источников")
+                print(error)
+            }, receiveValue: {
+                apisource in
+                self.sourcesNews = apisource
+            })
     }
     
     func geoCode(with location: CLLocation) {

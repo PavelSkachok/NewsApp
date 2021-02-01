@@ -31,9 +31,25 @@ struct Article: Codable ,Identifiable{
         case url, urlToImage, publishedAt, content
     }
 }
+//MARK: - APISources
+struct APISources:Codable {
+    let status:String?
+    let sources:[Source]
+}
 
 // MARK: - Source
-struct Source: Codable {
+struct Source: Codable ,Identifiable{
     let id: String?
-    let name: String
+    let name: String?
+    let description:String?
+    let country:String?
+    let category:String?
+    let url: String?
+    let language:String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, country
+        case description = "description"
+        case url, category, language
+    }
 }

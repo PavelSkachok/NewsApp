@@ -22,7 +22,6 @@ struct NewsList: View {
     }
     
     var body: some View {
-            NavigationView {
                 List{
                     Toggle(isOn: $showFavoriteOnly, label: {
                         Text("Favorites only")
@@ -38,9 +37,8 @@ struct NewsList: View {
                             }
                         }
                     }
-                }
-                    .navigationTitle("News headlines")
-            }
+        }
+                .listStyle(PlainListStyle())
             .environmentObject(newsViewModel)
     }
 }
