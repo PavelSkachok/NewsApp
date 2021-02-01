@@ -31,7 +31,7 @@ struct ContentView: View {
     var body: some View {
         
             VStack {
-                Text(news.countryEndpoint)
+//                Text(news.countryEndpoint)
                Picker("",selection: $news.indexEndpoint) {
                     Text("topHeadlines").tag(0)
                     Text("everything").tag(1)
@@ -39,6 +39,7 @@ struct ContentView: View {
                 TextField("Search", text: $news.keyword)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
     
+                if news.indexEndpoint == 0 {
                 Text("Category")
                     Picker("", selection: $news.stringEndpoint) {
                         Text("business").tag("business")
@@ -62,6 +63,7 @@ struct ContentView: View {
                     Text("fr").tag("fr")
                     Text("gb").tag("gb")
                 }.pickerStyle(SegmentedPickerStyle())
+                }
                 NewsList()
                     .environmentObject(news)
         }
