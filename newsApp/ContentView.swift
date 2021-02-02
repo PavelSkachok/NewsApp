@@ -28,6 +28,8 @@ struct ContentView: View {
    
     @ObservedObject var news = NewsViewModel()
     @State var tagSource:Int? = 0
+//    @ObservedObject var sourceModel = SourceModel()
+    var sources = SourceService.shared.jsonSource.sources
     
     var body: some View {
         
@@ -79,6 +81,7 @@ struct ContentView: View {
                             .background(Color.green)
                             .cornerRadius(8)
                         }
+//                        .environmentObject(sourceModel)
                     }
                         
                     NewsList()

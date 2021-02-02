@@ -12,6 +12,7 @@ struct newsAppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+//            ContentViewSources()
         }
     }
 }

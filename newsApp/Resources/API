@@ -1,0 +1,138 @@
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let aPI = try API(json)
+
+import Foundation
+
+// MARK: - API
+struct API: Codable {
+    let status: String
+    let sources: [Source]
+}
+
+// MARK: API convenience initializers and mutators
+
+extension API {
+    init(data: Data) throws {
+        self = try newJSONDecoder().decode(API.self, from: data)
+    }
+
+    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
+        guard let data = json.data(using: encoding) else {
+            throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
+        }
+        try self.init(data: data)
+    }
+
+    init(fromURL url: URL) throws {
+        try self.init(data: try Data(contentsOf: url))
+    }
+
+    func with(
+        status: String? = nil,
+        sources: [Source]? = nil
+    ) -> API {
+        return API(
+            status: status ?? self.status,
+            sources: sources ?? self.sources
+        )
+    }
+
+    func jsonData() throws -> Data {
+        return try newJSONEncoder().encode(self)
+    }
+
+    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+        return String(data: try self.jsonData(), encoding: encoding)
+    }
+}
+
+// MARK: - Source
+struct Source: Codable {
+    let id, name, sourceDescription: String
+    let url: String
+    let category: Category
+    let language, country: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, name
+        case sourceDescription = "description"
+        case url, category, language, country
+    }
+}
+
+// MARK: Source convenience initializers and mutators
+
+extension Source {
+    init(data: Data) throws {
+        self = try newJSONDecoder().decode(Source.self, from: data)
+    }
+
+    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
+        guard let data = json.data(using: encoding) else {
+            throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
+        }
+        try self.init(data: data)
+    }
+
+    init(fromURL url: URL) throws {
+        try self.init(data: try Data(contentsOf: url))
+    }
+
+    func with(
+        id: String? = nil,
+        name: String? = nil,
+        sourceDescription: String? = nil,
+        url: String? = nil,
+        category: Category? = nil,
+        language: String? = nil,
+        country: String? = nil
+    ) -> Source {
+        return Source(
+            id: id ?? self.id,
+            name: name ?? self.name,
+            sourceDescription: sourceDescription ?? self.sourceDescription,
+            url: url ?? self.url,
+            category: category ?? self.category,
+            language: language ?? self.language,
+            country: country ?? self.country
+        )
+    }
+
+    func jsonData() throws -> Data {
+        return try newJSONEncoder().encode(self)
+    }
+
+    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+        return String(data: try self.jsonData(), encoding: encoding)
+    }
+}
+
+enum Category: String, Codable {
+    case business = "business"
+    case entertainment = "entertainment"
+    case general = "general"
+    case health = "health"
+    case science = "science"
+    case sports = "sports"
+    case technology = "technology"
+}
+
+// MARK: - Helper functions for creating encoders and decoders
+
+func newJSONDecoder() -> JSONDecoder {
+    let decoder = JSONDecoder()
+    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
+        decoder.dateDecodingStrategy = .iso8601
+    }
+    return decoder
+}
+
+func newJSONEncoder() -> JSONEncoder {
+    let encoder = JSONEncoder()
+    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
+        encoder.dateEncodingStrategy = .iso8601
+    }
+    return encoder
+}

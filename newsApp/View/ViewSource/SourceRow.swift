@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SourceRow: View {
-    @EnvironmentObject var newsViewModel: NewsViewModel
+//    @EnvironmentObject var newsViewModel: NewsViewModel
     var source:Source?
    
     var body: some View {
@@ -27,6 +27,6 @@ struct SourceRow: View {
 
 struct SourceRow_Previews: PreviewProvider {
     static var previews: some View {
-        SourceRow(source: NewsService.shared.jsonSource.sources[0])
+        SourceRow(source: SourceService.shared.jsonSource.sources[0])
     }
 }

@@ -8,26 +8,27 @@
 import SwiftUI
 
 struct SourceList: View {
-    @EnvironmentObject var newsViewModel : NewsViewModel
+//    @EnvironmentObject var newsViewModel : NewsViewModel
+    var sources:[Source]
     var body: some View {
         List{
-            ForEach(newsViewModel.sourcesNews,id: \.url) {
+            ForEach(sources, id: \.id) {
                     source in
                 HStack {
-//                    NavigationLink(destination: EmptyView()
-//                    ){
-                        SourceRow(source:source)
-//                    }
+                    NavigationLink(destination: EmptyView()
+                    ){
+                        SourceRow(source: source)
+                    }
                 }
             }
         }
         .listStyle(PlainListStyle())
-    .environmentObject(newsViewModel)
+//    .environmentObject(newsViewModel)
     }
 }
 
 struct SourceList_Previews: PreviewProvider {
     static var previews: some View {
-        SourceList()
+        SourceList(sources: SourceService.shared.jsonSource.sources)
     }
 }
