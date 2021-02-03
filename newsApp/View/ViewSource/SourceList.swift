@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct SourceList: View {
-//    @EnvironmentObject var newsViewModel : NewsViewModel
+//    @ObservedObject var newsViewModel = NewsViewModel()
     var sources:[Source]
     var body: some View {
         List{
             ForEach(sources, id: \.id) {
                     source in
                 HStack {
-                    NavigationLink(destination: EmptyView()
+                    NavigationLink(destination: SourceDetail(newsViewModel: NewsViewModel(source: source.name!), source:source)
                     ){
                         SourceRow(source: source)
                     }

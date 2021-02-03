@@ -10,6 +10,15 @@ import Combine
 import SwiftUI
 import CoreLocation
 
+struct Param{
+    var index:Int = 0
+    var category: String = "general"
+    var country: String = "ru"
+    var keywordOrb: String = ""
+    var source:String = "all"
+}
+
+
 class NewsViewModel:NSObject, ObservableObject {
     @Published var userLatitude: Double = 0
     @Published var userLongitude: Double = 0
@@ -20,11 +29,14 @@ class NewsViewModel:NSObject, ObservableObject {
     
     
     @Published var indexEndpoint: Int = 0
-    @Published var stringEndpoint: String = "general"
+    @Published var categoryEndpoint: String = "general"
     @Published var countryEndpoint: String = "ru"
+    @Published var source:String = ""
     @Published var keyword:String = ""
-    var cancellable: AnyCancellable?
-    var cancellableSource:AnyCancellable?
+    var cancellableSet: Set<AnyCancellable> = []
+    var cancellable:AnyCancellable?
+    @Published var param:Param = Param()
+    
     
     var indexIdNews: [UUID]{
         newsArticles.map{
@@ -39,20 +51,30 @@ class NewsViewModel:NSObject, ObservableObject {
    
     private let locationManager = CLLocationManager()
     private let geoCoder = CLGeocoder()
-    override init() {
+   
+    init(source: String) {
         super.init()
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
+//                fetchData()
         
-        cancellable = Publishers.CombineLatest4($indexEndpoint, $stringEndpoint, $countryEndpoint,
+        self.param.source = source
+        fetchData2()
+       
+        
+    }
+    
+    
+    func fetchData(){
+        cancellable = Publishers.CombineLatest4( $indexEndpoint, $categoryEndpoint, $countryEndpoint,
                                                 $keyword
                                                     .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
                                                     .eraseToAnyPublisher()
         )
-            .flatMap{ (index, string, country, keyword) -> AnyPublisher<[Article], Error> in
-                return self.service.fetchArticles(endpoint: Endpoints.init(index: index),stringEndpoints: string, countryEndpoint: country, keyword: keyword)
+        .flatMap{ (index, string, country, keyword) -> AnyPublisher<[Article], Error> in
+                return self.service.fetchArticles(endpoint: Endpoints.init(index: index),stringEndpoints: string, countryEndpoint: country, keyword: keyword, source: "all")
             }
         .sink(receiveCompletion: {
             error in
@@ -61,7 +83,21 @@ class NewsViewModel:NSObject, ObservableObject {
             
         }, receiveValue: { api in
             self.newsArticles = api
-//            print("Проверка названия статьи: "+api.articles[0].title!)
+        })
+    }
+    
+    func fetchData2(){
+      cancellable = $param
+        .flatMap{
+            return  self.service.fetchArticles(endpoint: Endpoints.init(index: $0.index), stringEndpoints: $0.category, countryEndpoint: $0.country, keyword: $0.keywordOrb,source: $0.source)
+        }
+        .sink(receiveCompletion: {
+            error in
+            self.newsArticles = []
+            return print(error)
+
+        }, receiveValue: { api in
+            self.newsArticles = api
         })
     }
     
@@ -81,11 +117,10 @@ extension NewsViewModel: CLLocationManagerDelegate {
         userLongitude = location.coordinate.longitude
         geoCode(with: location)
         currentCountry = placemark?.isoCountryCode
-//        print("код страны"+(placemark?.isoCountryCode)!)
-//        countryEndpoint = placemark?.isoCountryCode
         if currentCountry != nil {
             print("зашли в если")
             countryEndpoint = placemark?.isoCountryCode ?? "pasha"
+            param.country = placemark?.isoCountryCode ?? "pasha"
             manager.stopUpdatingLocation()
         }
     }

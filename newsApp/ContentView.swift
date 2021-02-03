@@ -26,7 +26,7 @@ class Test: ObservableObject {
 
 struct ContentView: View {
    
-    @ObservedObject var news = NewsViewModel()
+    @ObservedObject var news = NewsViewModel(source: "all")
     @State var tagSource:Int? = 0
 //    @ObservedObject var sourceModel = SourceModel()
     var sources = SourceService.shared.jsonSource.sources
@@ -36,28 +36,28 @@ struct ContentView: View {
         NavigationView {
             VStack {
     //                Text(news.countryEndpoint)
-                   Picker("",selection: $news.indexEndpoint) {
+                Picker("",selection: $news.param.index) {
                         Text("topHeadlines").tag(0)
                         Text("everything").tag(1)
                     }.pickerStyle(SegmentedPickerStyle())
-                    TextField("Search", text: $news.keyword)
+                TextField("Search", text: $news.param.keywordOrb)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
         
-                    if news.indexEndpoint == 0 {
+                if news.param.index == 0 {
                     Text("Category")
-                        Picker("", selection: $news.stringEndpoint) {
+                    Picker("", selection: $news.param.category) {
                             Text("business").tag("business")
                             Text("entertainment").tag("entertainment")
                             Text("general").tag("general")
                         }.pickerStyle(SegmentedPickerStyle())
-                        Picker("", selection: $news.stringEndpoint) {
+                    Picker("", selection: $news.param.category) {
                             Text("health").tag("health")
                             Text("science").tag("science")
                             Text("sports").tag("sports")
                             Text("technology").tag("technology")
                         }.pickerStyle(SegmentedPickerStyle())
                     Text("Country")
-                    Picker("",selection: $news.countryEndpoint) {
+                        Picker("",selection: $news.param.country) {
                         Text("cz").tag("cz")
                         Text("de").tag("de")
                         Text("pl").tag("pl")

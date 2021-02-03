@@ -21,6 +21,7 @@
 		797A788725C8640E002F40A4 /* SourceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A788625C8640E002F40A4 /* SourceService.swift */; };
 		797A788A25C8654E002F40A4 /* SourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A788925C8654E002F40A4 /* SourceModel.swift */; };
 		797A789525C8A592002F40A4 /* APISources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A789425C8A592002F40A4 /* APISources.swift */; };
+		797A78A125C96F89002F40A4 /* SourceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A78A025C96F89002F40A4 /* SourceDetail.swift */; };
 		79CDC04D25BC4A5300DE30D3 /* newsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC04C25BC4A5300DE30D3 /* newsAppApp.swift */; };
 		79CDC04F25BC4A5300DE30D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC04E25BC4A5300DE30D3 /* ContentView.swift */; };
 		79CDC05125BC4A5900DE30D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79CDC05025BC4A5900DE30D3 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		797A788625C8640E002F40A4 /* SourceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceService.swift; sourceTree = "<group>"; };
 		797A788925C8654E002F40A4 /* SourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceModel.swift; sourceTree = "<group>"; };
 		797A789425C8A592002F40A4 /* APISources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISources.swift; sourceTree = "<group>"; };
+		797A78A025C96F89002F40A4 /* SourceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceDetail.swift; sourceTree = "<group>"; };
 		79CDC04925BC4A5300DE30D3 /* newsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79CDC04C25BC4A5300DE30D3 /* newsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newsAppApp.swift; sourceTree = "<group>"; };
 		79CDC04E25BC4A5300DE30D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				797A787D25C832C5002F40A4 /* ContentViewSources.swift */,
 				797A788025C8355E002F40A4 /* SourceRow.swift */,
 				797A788325C836D1002F40A4 /* SourceList.swift */,
+				797A78A025C96F89002F40A4 /* SourceDetail.swift */,
 			);
 			path = ViewSource;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				797A788A25C8654E002F40A4 /* SourceModel.swift in Sources */,
 				79CDC04D25BC4A5300DE30D3 /* newsAppApp.swift in Sources */,
 				797A787E25C832C5002F40A4 /* ContentViewSources.swift in Sources */,
+				797A78A125C96F89002F40A4 /* SourceDetail.swift in Sources */,
 				79CDC09125BCC95A00DE30D3 /* API.swift in Sources */,
 				797A788125C8355E002F40A4 /* SourceRow.swift in Sources */,
 				797A789525C8A592002F40A4 /* APISources.swift in Sources */,
